@@ -39,3 +39,13 @@ console.log(home)
 window.home = home
 
 $home.append(home.$)
+$(window).on('keydown', e => {
+  switch (e.key) {
+  case 'ArrowRight':
+    home.next()
+    break
+  case 'ArrowLeft':
+    home.prev()
+    break
+  }
+})

@@ -23,18 +23,30 @@ class Home {
     this.$ = $('<div class="home"></div>')
       .append(this.sliders.map(slider => slider.$))
 
-    this.to(0)
+    this.index = 0
+    this.to(this.index)
+  }
+
+  prev() {
+    return this.to(this.index - 1)
+  }
+
+  next() {
+    return this.to(this.index + 1)
   }
 
   to(index) {
-    index = index % this.data.length
+    const mod = (i, n) => ((i % n) + n) % n
+    this.index = mod(index, this.data.length)
 
-    this.sliders.map(slider => slider.to(index))
+    this.sliders.map(slider => slider.to(this.index))
 
     this.masks.forEach((mask, i) => {
       this.sliders[i].mask(mask)
     })
     this.masks.unshift(this.masks.pop())
+
+    return this
   }
 
   render() {
