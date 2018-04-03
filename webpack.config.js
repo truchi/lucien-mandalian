@@ -4,13 +4,13 @@ module.exports = {
   entry: './src/main.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'docs')
   },
   mode: 'development',
   devServer: {
     host: '0.0.0.0',
     port: 9000,
-    contentBase: './dist',
+    contentBase: './docs',
     index: 'index.html',
     overlay: true,
     compress: true,
