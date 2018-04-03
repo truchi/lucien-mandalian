@@ -9,11 +9,21 @@ class Slider {
     }
 
     to(index) {
-        this.slides.map((slide, i) =>
-                        slide.$
-                        .css('transform', `translateX(${ (i - index) * 100 }vw)`)
-                       )
+        this.slides.map((slide, i) => {
+            if (i === index) {
+                slide.$.css('opacity', 1)
+            } else {
+                slide.$.css('opacity', 0)
+            }
+        })
     }
+
+    // to(index) {
+    //     this.slides.map((slide, i) =>
+    //                     slide.$
+    //                     .css('transform', `translateX(${ (i - index) * 100 }vw)`)
+    //                    )
+    // }
 
     mask({ r, cx, cy }) {
         this.$

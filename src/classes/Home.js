@@ -4,38 +4,42 @@ import Image    from './Image'
 import Text     from './Text'
 
 class Home {
-    constructor({ data }) {
-        console.log(data);
-        this.data = data
+  constructor({ data, masks }) {
+    console.log(data);
+    this.data = data
+    this.masks = masks
 
-        const images = this.data.map(data => data.image)
-        const texts  = this.data.map(data => data.text )
-        this.sliders = [
-            new Slider({ constructor: Image, className: 'images', data: images }),
-            new Slider({ constructor: Image, className: 'images', data: images }),
-            new Slider({ constructor: Image, className: 'images', data: images }),
-            new Slider({ constructor: Text , className: 'texts' , data: texts  })
-        ]
+    const images = this.data.map(data => data.image)
+    const texts  = this.data.map(data => data.text )
+    this.sliders = [
+      new Slider({ constructor: Text , className: 'texts' , data: texts  })
+    ]
 
-        this.$ = $('<div class="home"></div>')
-            .append(this.sliders.map(slider => slider.$))
+    this.masks.forEach(() => {
+      const slider = new Slider({ constructor: Image, className: 'images', data: images })
+      this.sliders.unshift(slider)
+    })
 
-        this.sliders[0].mask({ r: 15, cx: 57, cy: 40 })
-        this.sliders[1].mask({ r:  4, cx: 31, cy: 52 })
-        this.sliders[2].mask({ r:  4, cx: 40, cy: 84 })
+    this.$ = $('<div class="home"></div>')
+      .append(this.sliders.map(slider => slider.$))
 
-        this.to(0)
-    }
+    this.to(0)
+  }
 
-    to(index) {
-        index = index % this.data.length
+  to(index) {
+    index = index % this.data.length
 
-        this.sliders.map(slider => slider.to(index))
-    }
+    this.sliders.map(slider => slider.to(index))
 
-    render() {
+    this.masks.forEach((mask, i) => {
+      this.sliders[i].mask(mask)
+    })
+    this.masks.unshift(this.masks.pop())
+  }
 
-    }
+  render() {
+
+  }
 }
 
 export default Home

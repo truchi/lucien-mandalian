@@ -1,46 +1,48 @@
 #home {
-  $transition: .3s ease;
+    $transition: .4s ease;
 
-  @extend %full-rel;
-  background: blue;
+    @extend %full-rel;
+    background: blue;
 
-  overflow: hidden;
+    overflow: hidden;
 
-  .texts,
-  .images,
-  .image {
-    @extend %full-abs;
-  }
-
-  .images {
+    .texts,
+    .images,
     .image {
-      background-repeat  : no-repeat;
-      background-size    : 100vw auto;
-      background-position: center center;
-
-      transition: transform $transition;
-    }
-  }
-
-  .text {
-    position: absolute;
-    top     : 50%;
-    left    : 30%;
-
-    color: white;
-
-    transition: transform $transition;
-
-    .title {
-      margin-left: 30px;
-
-      font-size  : 60px;
-      font-weight: bold;
-      line-height: 45px;
+        @extend %full-abs;
     }
 
-    .subtitle {
-      margin: 10px 0 0 30px;
+    .images {
+        .image {
+            background-repeat  : no-repeat;
+            background-size    : 100vw auto;
+            background-position: center center;
+
+            transition: transform $transition, opacity $transition;
+        }
+
+        transition: clip-path $transition;
     }
-  }
+
+    .text {
+        position: absolute;
+        top     : 50%;
+        left    : 30%;
+
+        color: white;
+
+        transition: transform $transition;
+
+        .title {
+            margin-left: 30px;
+
+            font-size  : 60px;
+            font-weight: bold;
+            line-height: 45px;
+        }
+
+        .subtitle {
+            margin: 10px 0 0 30px;
+        }
+    }
 }
