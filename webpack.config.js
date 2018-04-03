@@ -4,7 +4,8 @@ module.exports = {
   entry: './src/main.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'docs')
+    path: path.resolve(__dirname, 'docs'),
+    publicPath: 'https://truchi.github.io/lucien-mandalian'
   },
   mode: 'development',
   devServer: {
